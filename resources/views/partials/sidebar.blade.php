@@ -1,5 +1,4 @@
 <aside class="main-sidebar">
-    <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
@@ -7,8 +6,8 @@
           <img src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ session()->get('users')->NAME }}</p>
-          <a href="#">{{ session()->get('users')->EMAIL }}</a>
+          <p style="color:white">{{ session()->get('users')->NAME }}</p>
+          <a style="color:white" href="#">{{ session()->get('users')->EMAIL }}</a>
         </div>
       </div>
       <!-- search form -->
@@ -19,12 +18,20 @@
           </button>
         </div>
       </form>
-      <!-- /.search form -->
-      <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="active">
-        <a href="/dashboard-admin">
-            <i class="fa fa-dashboard"></i> <span>Home</span>
+        <li>
+        <a href="{{ route('home.dashboard-admin') }}">
+            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('home.list-apps') }}">
+            <i class="fa fa-desktop"></i> <span>Apps</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ route('home.users-status') }}">
+            <i class="fa fa-users"></i> <span>Users Active</span>
           </a>
         </li>
       </ul>

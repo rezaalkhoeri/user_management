@@ -1,7 +1,7 @@
 <header class="main-header">
 
     <!-- Logo -->
-    <a href="index2.html" class="logo">
+    <a href="{{ route('home.dashboard-admin') }}" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
       <span class="logo-mini">
           <img class="" src="https://i0.wp.com/www.desaintasik.com/wp-content/uploads/2018/05/logopertamina.png?fit=320%2C320&ssl=1" width="50">

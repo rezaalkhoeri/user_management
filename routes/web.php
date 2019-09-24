@@ -28,12 +28,14 @@ Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 Route::group(['middleware' => 'web'], function () {
     Route::get('/dashboard-admin', 'HomeController@index')->name('home.dashboard-admin');
     Route::get('/dashboard-user', 'HomeController@index')->name('home.dashboard-user');
-    Route::get('/dashboard-admin/add-user', 'HomeController@addUserIndex')->name('home.add-user-index');
-    Route::get('/dashboard-admin/update-user/{PERNR}', 'HomeController@updateUserIndex')->name('home.update-user-index');
-    Route::post('/dashboard-admin/update-user/{PERNR}/{ASSIGNMENT_NUMBER}', 'HomeController@updateUser')->name('home.update-user');
-    Route::post('/dashboard-admin/inactive-user/{PERNR}/{ASSIGNMENT_NUMBER}', 'HomeController@deleteUser')->name('home.delete-user');
-    Route::post('/dashboard-admin/active-user/{PERNR}/{ASSIGNMENT_NUMBER}', 'HomeController@activeUser')->name('home.active-user');
-    Route::post('/dashboard-admin/add-user', 'HomeController@addUser')->name('home.add-user');
+    Route::get('/list-apps', 'HomeController@listapps')->name('home.list-apps');
+    Route::get('/users-status', 'HomeController@userstatus')->name('home.users-status');
+    Route::get('/admin/add-user', 'HomeController@addUserIndex')->name('home.add-user-index');
+    Route::get('/admin/update-user/{PERNR}', 'HomeController@updateUserIndex')->name('home.update-user-index');
+    Route::post('/admin/update-user/{PERNR}/{ASSIGNMENT_NUMBER}', 'HomeController@updateUser')->name('home.update-user');
+    Route::post('/admin/inactive-user/{PERNR}/{ASSIGNMENT_NUMBER}', 'HomeController@deleteUser')->name('home.delete-user');
+    Route::post('/admin/active-user/{PERNR}/{ASSIGNMENT_NUMBER}', 'HomeController@activeUser')->name('home.active-user');
+    Route::post('/admin/add-user', 'HomeController@addUser')->name('home.add-user');
 
 });
 Route::get('/', function () {

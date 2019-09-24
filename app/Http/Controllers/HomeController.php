@@ -48,12 +48,42 @@ class HomeController extends Controller
         $user= json_decode($responses->getBody());
         $users = $user->responseData;
         Session::put('users', $users);
-        return view('apps.adminlayouts.dashboardadmin',compact('getdatas','users'));
+        return view('user-management.admin-page.users-data',compact('getdatas','users'));
     }
 
     public function addUserIndex()
     {
-        return view('apps.adminLayouts.inputData');
+        return view('user-management.admin-page.input-usersdata');
+    }
+
+    public function listapps()
+    {
+        return view('user-management.users-page.list-app');
+    }
+    public function userstatus(Request $request)
+    {
+        //Get data user
+        $token = Session::get('SessionToken');
+        $client = new \GuzzleHttp\Client();
+        $url = "http://localhost:3000/api/users_data/";
+        $response = $client->get($url, [
+            'headers' => [
+                'authentication' => $token ,
+            ]
+        ]);
+        $body= json_decode($response->getBody());
+        $getdatas = $body->responseData;
+
+        //Get Data User Login
+        $responses = $client->get('http://localhost:3000/api/user/', [
+            'headers' => [
+                'authentication' => $token,
+              ]
+        ]);
+        $user= json_decode($responses->getBody());
+        $users = $user->responseData;
+        Session::put('users', $users);
+        return view('user-management.admin-page.data-statususers',compact('getdatas','users'));
     }
 
     public function addUser(Request $request)
@@ -107,7 +137,7 @@ class HomeController extends Controller
          $getusers = $updates->responseData;
          $get = array($getusers);
          // print_r($get);
-         return view('apps.adminLayouts.editData',compact('get'));
+         return view('user-management.admin-page.edit-usersdata',compact('get'));
 
     }
     public function updateUser(Request $request, $PERNR, $ASSIGNMENT_NUMBER)
@@ -152,7 +182,7 @@ class HomeController extends Controller
         ]);
         $deletes= json_decode($responses->getBody());
         $delete_users = $deletes->responseData;
-        return redirect(route('home.dashboard-admin',compact('delete_users')))->with('status', 'Inactive Data Success!');
+        return redirect(route('home.users-status',compact('delete_users')))->with('status', 'Inactive Data Success!');
     }
     public function activeUser(Request $request, $PERNR, $ASSIGNMENT_NUMBER)
     {
@@ -170,7 +200,7 @@ class HomeController extends Controller
         ]);
         $actives= json_decode($responses->getBody());
         $actived_users = $actives->responseData;
-        return redirect(route('home.dashboard-admin',compact('actived_users')))->with('status', 'Active Data Success!');
+        return redirect(route('home.users-status',compact('actived_users')))->with('status', 'Active Data Success!');
     }
     // public function showChangePasswordForm(){
     //     return view('auth.changepassword');
