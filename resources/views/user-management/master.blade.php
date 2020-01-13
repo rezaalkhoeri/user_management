@@ -109,6 +109,40 @@
   <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
   <!-- AdminLTE for demo purposes -->
   <script src="{{ asset('dist/js/demo.js') }}"></script>
+  <!-- Sweet Alert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+      @if (session('message'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Success!", "{{ session('message') }}", "success");
+          });
+      </script>
+      @endif
+      @if (session('alert'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Sorry!", "{!! session('alert') !!}", "error");
+          });
+      </script>
+      @endif
+      @if (session('warning'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Warning!", "{!! session('warning') !!}", "warning");
+          });
+      </script>
+      @endif
+      @if (session('info'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Info!", "{!! session('info') !!}", "info");
+          });
+      </script>
+      @endif
+
+
+
   <!-- Page script -->
   <script>
     $(function () {

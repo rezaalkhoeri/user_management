@@ -9,7 +9,7 @@
         </div>
       @foreach ($get as $xusers)
       <div class="box-body">
-        <form role="form" method="post" action="{{ route('home.update-user', [$xusers->PERNR, $xusers->ASSIGNMENT_NUMBER]) }}">
+        <form role="form" method="post" action="{{ route('users.update-user', [$xusers->PERNR, $xusers->ASSIGNMENT_NUMBER]) }}">
           @csrf
             <div class="form-group">
                 <label>Personal Number</label>
@@ -31,32 +31,15 @@
               <label>Assignment Number</label>
               <input type="number" class="form-control" value="{{ $xusers->ASSIGNMENT_NUMBER }}" name="assignment_number" id="assignment_number" disabled>
             </div>
-            {{-- <div class="row">
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Active
-                </label>
-              </div>
-              <div class="checkbox">
-                <label>
-                  <input type="checkbox"> Inactive
-                </label>
-              </div>
-            </div> --}}
-            {{--  <div class="form-group">
-              <label>Tipe Users</label>
-              <select class="form-control" id="tipe_users">
-                <option>L</option>
-                <option>Not L</option>
+            <div class="form-group">
+              <label> Position </label>
+              <select class="form-control" name="role" id="role">
+                  <option value="1" <?php if ($xusers->ZROLE == 1) { echo 'selected'; }?> > Superadmin </option>
+                  <option value="2" <?php if ($xusers->ZROLE == 2) { echo 'selected'; }?> > Admin </option>
+                  <option value="3" <?php if ($xusers->ZROLE == 3) { echo 'selected'; }?> > User </option>
               </select>
-            </div>  --}}
-            {{--  <div class="form-group">
-              <label>Role Users</label>
-              <select class="form-control" id="role">
-                <option>Admin</option>
-                <option>Users</option>
-              </select>
-            </div>  --}}
+            </div>
+
             <div>
               <button type="submit" class="btn btn-primary">
                 {{ __('Update Users') }}

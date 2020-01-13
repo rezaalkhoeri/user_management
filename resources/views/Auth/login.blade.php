@@ -35,7 +35,7 @@
       <form method="POST" action="{{ route('signin') }}">
           @csrf
         <div class="form-group has-feedback">
-          <input id="email" style="border-radius:4px;" type="text" class="form-control" name="username" placeholder="E-mail" autofocus>
+          <input id="email" style="border-radius:4px;" type="text" class="form-control" name="email" placeholder="E-mail" autofocus required>
           <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         </div>
         <div class="form-group has-feedback">
@@ -74,6 +74,9 @@
   <script src="../../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
   <!-- iCheck -->
   <script src="../../plugins/iCheck/icheck.min.js"></script>
+  <!-- Sweet Alert -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
   <!-- <script>
   $(function () {
     $('input').iCheck({
@@ -83,6 +86,37 @@
     });
   });
 </script> -->
+
+      @if (session('message'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Success!", "{{ session('message') }}", "success");
+          });
+      </script>
+      @endif
+      @if (session('alert'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Sorry!", "{!! session('alert') !!}", "error");
+          });
+      </script>
+      @endif
+      @if (session('warning'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Warning!", "{!! session('warning') !!}", "warning");
+          });
+      </script>
+      @endif
+      @if (session('info'))
+      <script type="text/javascript">
+          $(document).ready(function(){
+              swal("Info!", "{!! session('info') !!}", "info");
+          });
+      </script>
+      @endif
+
+
 </body>
 
 </html>
