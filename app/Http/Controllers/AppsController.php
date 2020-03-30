@@ -51,6 +51,10 @@ class AppsController extends Controller
         ]);
         $body= json_decode($response->getBody());
 
+        print("kampret");
+        print_r($body);
+        die;
+        
         if ($body->responseCode == 00) {
             $getApp = $body->responseData;        
             $return = ['users','getApp'];
@@ -408,7 +412,8 @@ class AppsController extends Controller
 
         if ($body->responseCode == 00) {
             $getApp = $body->responseData->rows;        
-            $return = ['users','getApp'];
+            $tokenCredential = Session::get('tokenCredential');
+            $return = ['users','getApp','tokenCredential'];
             return view('user-management.users-page.list-app', compact($return));
         } else {
             return $this->error($body);

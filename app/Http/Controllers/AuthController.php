@@ -31,7 +31,7 @@ class AuthController extends Controller
           ]);
   
           $body = json_decode($response->getBody()); 
-
+          
           if ($body->responseCode == 55) {
               Session::flash('warning', $body->responseMessage );
               Session::flash('type','warning');
@@ -54,6 +54,8 @@ class AuthController extends Controller
           
           } elseif ($body->responseCode == '00'){              
                 $data = $body->responseData;
+                
+                Session::put('tokenCredential', $body->responseData->token);
                 Session::put('login', $data);
 
                 //Get Data User Login
@@ -64,19 +66,22 @@ class AuthController extends Controller
                       ]
                 ]);
                 $user= json_decode($responses->getBody());
+                
                 $users = $user->responseData;
                 Session::put('users', $users);
+
+                if($data->role == null){
+                  $data->role = "3";
+                }
 
               if ($data->role == 1) {
                 Session::put('SessionToken', $body);
                 return redirect(route('home.dashboard'));                            
-              } elseif ($data->role == 2) {
+              } else {
+                //Pekerja
                 Session::put('SessionToken', $body);
                 return redirect(route('home.dashboard'));                            
-              } elseif ($data->role == 3) {
-                Session::put('SessionToken', $body);
-                return redirect(route('home.dashboard'));                            
-              }
+              } 
           }
 
           // echo '<pre>',print_r($body,1),'</pre>';
@@ -85,6 +90,22 @@ class AuthController extends Controller
     }
       
     public function signout(Request $request) {
+        $http = new \GuzzleHttp\Client();
+        $url = config('app.url')."/api/auth/logout";
+        $tokenCredential = Session::get('tokenCredential');
+
+        $response = $http->post($url, [
+          'form_params' => [
+                  "key"=>$tokenCredential
+              ],
+        ]);
+  
+        $body = json_decode($response->getBody()); 
+          
+        if ($body->responseCode == 55) {
+
+        }
+        
         $request->session()->flush();
         return redirect('signin')->with('info','Logout Success!');
     }

@@ -77,7 +77,7 @@
           </a>
         </li>
       </ul>
-      @elseif($users->ZROLE == 3)
+      @elseif(($users->ZROLE == 3) || ($users->ZROLE == ""))
       <form action="#" method="get" class="sidebar-form">
         <div>
           <button type="submit" name="search" id="search-btn" class="btn btn-block">

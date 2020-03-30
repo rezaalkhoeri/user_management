@@ -18,7 +18,7 @@
       <div class="inner">
         <h4 style="text-align: center; color:black;">{{$row->appsname}}</h4>
       </div>
-      <a href="http://{{$row->url}}" target="_blank" class="small-box-footer bg-red">Go to Application <i class="fa fa-arrow-circle-right"></i></a>
+      <a href="http://{{$row->url}}{{$tokenCredential}}" target="_blank" class="small-box-footer bg-red">Go to Application <i class="fa fa-arrow-circle-right"></i></a>
     </div>
   </div>
   @endforeach
