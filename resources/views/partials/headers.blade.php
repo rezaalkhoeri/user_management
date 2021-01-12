@@ -24,18 +24,18 @@
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" class="user-image" alt="User Image">
+              <img src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{{ session()->get('users')->NAME }}</span>
+              <span class="hidden-xs"><?php echo Session::get('login')->name; ?></span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="https://www.stickpng.com/assets/images/585e4bf3cb11b227491c339a.png" class="img-circle" alt="User Image">
+                <img src="https://moonvillageassociation.org/wp-content/uploads/2018/06/default-profile-picture1.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                    {{ session()->get('users')->NAME }}
-                  <small>{{ session()->get('users')->AD_USERNAME }}</small>
+                    <?php echo Session::get('login')->name; ?>
+                  <small><?php echo Session::get('login')->username; ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

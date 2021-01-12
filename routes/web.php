@@ -14,7 +14,7 @@
 //Routes Login Page
 Route::get('/signout', 'AuthController@signout')->name('signout');
 Route::get('/signin', 'AuthController@getLogin')->name('signin');
-Route::post('/signin', 'AuthController@authlogin')->name('signin');
+Route::post('/signin', 'AuthController@authlogin')->name('login');
 
 //Routes Password
 Route::get('password/reset', 'Auth\ForgotPasswordController@ShowLinkRequestForm')->name('password.request');

@@ -51,9 +51,9 @@ class AppsController extends Controller
         ]);
         $body= json_decode($response->getBody());
 
-        print("kampret");
-        print_r($body);
-        die;
+        // print("kampret");
+        // print_r($body);
+        // die;
         
         if ($body->responseCode == 00) {
             $getApp = $body->responseData;        
@@ -187,8 +187,6 @@ class AppsController extends Controller
             return $this->error($apps);
         }
     }
-
-
 
 
     public function indexAppsMapping()

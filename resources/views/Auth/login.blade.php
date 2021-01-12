@@ -32,7 +32,7 @@
         <div class="login-logo">
             <img src="{{asset('assets/images/img/logo/logo.png')}}" width="250">
           </div>
-      <form method="POST" action="{{ route('signin') }}">
+      <form method="POST" action="{{ route('login') }}">
           @csrf
         <div class="form-group has-feedback">
           <input id="email" style="border-radius:4px;" type="text" class="form-control" name="email" placeholder="E-mail" autofocus required>

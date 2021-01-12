@@ -70,6 +70,9 @@ class AuthController extends Controller
                 $users = $user->responseData;
                 Session::put('users', $users);
 
+                print_r(Session::get('login'));
+                die;
+
                 if($data->role == null){
                   $data->role = "3";
                 }
